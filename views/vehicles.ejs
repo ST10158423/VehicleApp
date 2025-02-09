@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Vehicles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 40px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #007BFF;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label, input, button {
+            padding: 8px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registered Vehicles</h1>
+    <table>
+        <tr>
+            <th>VehicleID</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>KM</th>
+            <th>Color</th>
+            <th>Location</th>
+            <th>Value</th>
+        </tr>
+        <% vehicles.forEach(function(vehicle) { %>
+            <tr>
+                <td><%= vehicle.VehicleID %></td>
+                <td><%= vehicle.Make %></td>
+                <td><%= vehicle.Model %></td>
+                <td><%= vehicle.KM %></td>
+                <td><%= vehicle.Color %></td>
+                <td><%= vehicle.Location %></td>
+                <td><%= vehicle.Value %></td>
+            </tr>
+        <% }); %>
+    </table>
+    <h2>Find Vehicle Value by ID</h2>
+    <form action="/vehicle-value" method="POST">
+        <label for="vehicleID">Enter Vehicle ID:</label>
+        <input type="text" id="vehicleID" name="vehicleID">
+        <button type="submit">View Value</button>
+    </form>
+    <% if (value !== null) { %>
+        <p>Vehicle Value: <%= value %></p>
+    <% } %>
+    <a href="/">Register New Vehicle</a>
+</body>
+</html>
